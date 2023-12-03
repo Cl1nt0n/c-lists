@@ -54,9 +54,14 @@ int main()
 				print_menu();
 				break;
 			case 3:
+				if (list.get_size() == 0)
+				{
+					cout << "Удаление невозможно. Список пуст." << endl; 
+					break;
+				}
 				int index;
 				cout << "Введите номер элемента." << endl;
-				while (!(cin >> index) || index < 0 || index >= list.get_size() )
+				while (!(cin >> index) || index < 0 || index >= list.get_size())
 				{
 					cout << "Ошибка. Вводимое значение должно быть числом, меньшим размера листа и большим либо равным 0" << endl;
 					cin.clear();
