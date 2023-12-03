@@ -50,43 +50,36 @@ int main()
 					cin.ignore(10000, '\n');
 				}
 				list.push_back(numb);
-				cout << "Элемент успешно добавлен." << endl;
 				cout << endl;
 				print_menu();
 				break;
 			case 3:
 				int index;
 				cout << "Введите номер элемента." << endl;
-				while (!(cin >> index) || index < 0 || index >= list.get_size())
+				while (!(cin >> index) || index < 0 || index >= list.get_size() )
 				{
 					cout << "Ошибка. Вводимое значение должно быть числом, меньшим размера листа и большим либо равным 0" << endl;
 					cin.clear();
 					cin.ignore(10000, '\n');
 				}
 				list.erase(index);
-				cout << "Элемент успешно удален." << endl;
 				cout << endl;
 				print_menu();
 				break;
 			case 4:
-				/*int numb;
-				cout << "Введите число." << endl;
-				while (!(cin >> numb))
-				{
-					cout << "Ошибка. Элемент должен быть числом. " << endl;
-					cin.clear();
-					cin.ignore(10000, '\n');
-				}
-				list.push_back(numb);
-				cout << "Элемент успешно добавлен." << endl;
+				cout << "Индекс максимального элемента: " << list.get_max_element() << endl;
 				cout << endl;
-				print_menu();*/
+				print_menu();
+				break;
 			case 5:
 				list.clear();
 				break;
 			}
 		}
 	}
+
+	system("pause");
+	return 0;
 }
 
 void print_menu()

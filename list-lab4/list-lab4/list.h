@@ -7,8 +7,9 @@ public:
 	List();
 	~List();
 
-	void push_back(int numb);
 	int get_size();
+	int get_max_element();
+	void push_back(int numb);
 	void print();
 	void clear();
 	void erase(int index);
