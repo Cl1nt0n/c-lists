@@ -1,11 +1,12 @@
 #include "list.h";
 
+//конструктор
 List::List()
 {
 	size = 0;
 	head = nullptr;
 }
-
+//деструктор
 List::~List()
 {
 	cout << "—писок удален." << endl;
@@ -13,8 +14,10 @@ List::~List()
 
 void List::print()
 {
+	//указатель на головной элемент
 	Node* current = this->head;
 	int counter = 0;
+	//пока указатель на текущий узел не равен null
 	while (current != nullptr)
 	{
 		cout << '{' << current->numb << " \t-\t" << counter << '}' << endl;
@@ -28,6 +31,7 @@ void List::print()
 
 void List::clear()
 {
+	//пока размер больше нул€ идем от начла списка к концу, удал€€ головные элементы
 	while (size)
 	{
 		Node* head = this->head;
@@ -43,6 +47,7 @@ void List::erase(int index)
 	int counter = 0;
 	Node* current = head;
 
+	//пока счетчик на 1 меньше индекса искомого элемента
 	while (counter < index - 1)
 	{
 		current = current->p_next;
@@ -52,6 +57,7 @@ void List::erase(int index)
 	if (current->p_next == nullptr)
 	{
 		delete[] current;
+		cout << "Ёлемент успешно удален." << endl;
 		return;
 	}
 
