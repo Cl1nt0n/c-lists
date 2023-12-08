@@ -13,7 +13,7 @@ public:
 	void push_back(int numb);//функция добавления элемента в конец списка
 	void print();//функция печати списка
 	void clear();//функция удаления списка
-	void erase(int index);//функция удаления выбранного элемента списка
+	void erase(int index, int &error_code);//функция удаления выбранного элемента списка
 
 	int& operator[](const int index);//перегрузка оператора []
 

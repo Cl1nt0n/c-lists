@@ -1,4 +1,7 @@
 ﻿  list.cpp
-C:\Users\igorc\Documents\GitHub\c-lists\list-lab4\list-lab4\list.cpp(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-C:\Users\igorc\Documents\GitHub\c-lists\list-lab4\list-lab4\list.cpp(160): warning C4715: List::operator[]: значение возвращается не при всех путях выполнения
-  list-lab4.vcxproj -> C:\Users\igorc\Documents\GitHub\c-lists\list-lab4\x64\Debug\list-lab4.exe
+C:\Users\Игорь\Documents\GitHub\c-lists\list-lab4\list-lab4\list.cpp(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+C:\Users\Игорь\Documents\GitHub\c-lists\list-lab4\list-lab4\list.cpp(61,14): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+  main.cpp
+  Создание кода...
+C:\Users\Игорь\Documents\GitHub\c-lists\list-lab4\list-lab4\list.cpp(167): warning C4715: List::operator[]: значение возвращается не при всех путях выполнения
+  list-lab4.vcxproj -> C:\Users\Игорь\Documents\GitHub\c-lists\list-lab4\x64\Debug\list-lab4.exe

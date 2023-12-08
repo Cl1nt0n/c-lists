@@ -20,11 +20,13 @@ void List::print()
 	//пока указатель на текущий узел не равен null
 	while (current != nullptr)
 	{
+		//вывод значения текущего узла
 		cout << '{' << current->numb << " \t-\t" << counter << '}' << endl;
 		current = current->p_next;
 		counter++;
 	}
 
+	//если список пуст
 	if (counter == 0)
 		cout << "{ }" << endl;
 }
@@ -37,110 +39,129 @@ void List::clear()
 		Node* head = this->head;
 		this->head = head->p_next;
 
-		delete[] head;
+		//удаляем head
+		delete head;
 		size--;
 	}
 }
 
-void List::erase(int index)
+void List::erase(int index, int& error_code)
 {
 	int counter = 0;
-	Node* current = head;
+	Node* current = head;//текущий элемент
+	Node* previous = current;//предыдущий элемент
 
-	//пока счетчик на 1 меньше индекса искомого элемента
-	while (counter < index - 1)
+	//пока счетчик меньше индекса искомого элемента или текущий элемент не nullptr
+	while (counter < index && current != nullptr)
 	{
-		current = current->p_next;
+		//присваиваем previous current
+		previous = current;
 		counter++;
+		//current присваиваем следующий элемент
+		current = current->p_next;
 	}
 
-	if (current->p_next == nullptr)
+	//если элемент не найден
+	if (current == nullptr)
 	{
+		error_code == 1;
+		return;
+	}
+	//если искомое значение содержится в head
+	if (previous == current)
+	{
+		//присваиваем head следующий элемент
+		head = head->p_next;
+		//удаляем head
 		delete current;
-		head = nullptr;
-		cout << "Элемент успешно удален." << endl;
 		size--;
 		return;
 	}
-
-	Node* erasing = current->p_next;
-	if (erasing->p_next != nullptr)
-		current->p_next = erasing->p_next;
+	//если следующий элемент после искомого не null
+	if (current->p_next != nullptr)
+		previous->p_next = current->p_next;//меняем указатель p_next предыдущего на следующий после искомого
 	else
-		current->p_next = nullptr;
+		previous->p_next = nullptr;//меняем указатель p_next предыдущего на nullptr
 
-	delete erasing;
-	cout << "Элемент успешно удален." << endl;
+	//удаляем элемент
+	delete current;
+	error_code = 0;
 	size--;
 }
 
 void List::push_back(int numb)
 {
+	//если список пуст
 	if (head == nullptr)
 	{
 		head = new Node(numb);
+		return;
 	}
-	else
-	{
-		Node* current = this->head;
+	//указатель на первый элемент
+	Node* current = this->head;
 
+	//проверка на уникальность элемента
+	if (current->numb == numb)
+	{
+		cout << "Такой элемент уже существует. Необходимо, чтобы все элементы листа были уникальны. " << endl;
+		return;
+	}
+
+	//цикл поиска последнего элемента
+	while (current->p_next != nullptr)
+	{
+		current = current->p_next;
+		//проверка на уникальность
 		if (current->numb == numb)
 		{
 			cout << "Такой элемент уже существует. Необходимо, чтобы все элементы листа были уникальны. " << endl;
 			return;
 		}
-
-		while (current->p_next != nullptr)
-		{
-			current = current->p_next;
-			if (current->numb == numb)
-			{
-				cout << "Такой элемент уже существует. Необходимо, чтобы все элементы листа были уникальны. " << endl;
-				return;
-			}
-		} 
-		
-		current->p_next = new Node(numb);
 	}
+
+	//создание нового элемента
+	current->p_next = new Node(numb);
+	//увеличение размера
 	size++;
 	cout << "Элемент успешно добавлен." << endl;
 }
 
 int List::get_size()
 {
+	//возврат размера списка
 	return size;
 }
 
 int List::get_max_element()
 {
+	//если список пуст
 	if (head == nullptr)
 	{
 		cout << "Список пуст. Поиск максимального элемента невозможен. " << endl;
 		return -1;
 	}
 
+	//текущий элемент
 	Node* current = head;
+	//максимальный элемент
 	int max = current->numb;
+	//индекс максимального элемента
 	int max_index = 0;
 	int counter = 0;
 
-	if (current->numb > max)
-	{
-		max = current->numb;
-		max_index = counter;
-	}
-
+	//цикл прохода по всем элементам
 	while (current->p_next != nullptr)
 	{
 		current = current->p_next;
 		counter++;
+		//проверка на максимум
 		if (current->numb > max)
 		{
 			max = current->numb;
 			max_index = counter;
 		}
 	}
-
+	//возврат индекса максимального элемента
 	return max_index;
 }
 
