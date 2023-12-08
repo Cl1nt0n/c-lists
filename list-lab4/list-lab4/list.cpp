@@ -56,8 +56,10 @@ void List::erase(int index)
 
 	if (current->p_next == nullptr)
 	{
-		delete[] current;
+		delete current;
+		head = nullptr;
 		cout << "Ёлемент успешно удален." << endl;
+		size--;
 		return;
 	}
 
@@ -67,7 +69,7 @@ void List::erase(int index)
 	else
 		current->p_next = nullptr;
 
-	delete[] erasing;
+	delete erasing;
 	cout << "Ёлемент успешно удален." << endl;
 	size--;
 }
