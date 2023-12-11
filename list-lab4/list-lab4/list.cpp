@@ -95,6 +95,7 @@ void List::push_back(int numb)
 	if (head == nullptr)
 	{
 		head = new Node(numb);
+		size++;
 		return;
 	}
 	//указатель на первый элемент
